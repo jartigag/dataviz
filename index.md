@@ -6,6 +6,8 @@
     - D3.js
 - [temperaturas](https://javier.artiga.es/dataviz/temperaturas): Histogramas de la temperatura media máxima y mínima en las capitales de provincia españolas.
     - D3.js
+- [whatsappParser](https://github.com/jartigag/whatsappParser): Analyzing in localhost what your WhatsApp use reveals.
+    - Python, Bash, Elasticsearch, Docker
 - [chess-blunders](https://javier.artiga.es/chess-blunders): Analyzing the most common chess blunders.
     - Python, Bash, SQL
 - [football-entropy](https://javier.artiga.es/football-entropy): How predictable football really is?
