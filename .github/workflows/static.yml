@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Convert Markdown to HTML
-        uses: jartigag/markdown-to-html-with-github-style-action@v1.1.0
+        uses: jartigag/markdown-to-html-github-style@v1.1.0
         with:
           path: index.md
           outputpath:
