@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- https://www.w3.org/TR/i18n-html-tech-lang/ -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="description" content="javier artiga"/>
+
+  <meta property="og:locale" content="es"/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:site_name" content="javier artiga"/>
+  <meta property="og:title" content="javier artiga"/>
+  <meta property="og:description" content="👋 ¿hablamos?"/>
+  <meta property="og:image"       content="https://media-asgard.s3.eu-west-1.amazonaws.com/22/05/07/48cc7bc0-6e64-4f4c-8883-a9056ff2ce8b_carnet2sq.jpg"/>
+
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:site"        content="javier.artiga.es"/>
+  <meta name="twitter:creator"     content="@jartigag"/>
+  <meta name="twitter:title"       content="javier artiga"/>
+  <meta name="twitter:description" content="👋 ¿hablamos?"/>
+  <meta name="twitter:image"       content="https://media-asgard.s3.eu-west-1.amazonaws.com/22/05/07/48cc7bc0-6e64-4f4c-8883-a9056ff2ce8b_carnet2sq.jpg"/>
+
+  <!--meta http-equiv="refresh" content="0; url=https://mnf.red/jartigag" /-->
+
+  <link rel="me" href="https://mastodon.social/@jartigag"/>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="stylesheet" href="/css/fonts/inter.css">
+  <link rel="stylesheet" href="/css/style-gh-md.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <title>javier.artiga.es/dataviz/GEENumFiles</title>
+    <script src="/js/d3.v5.min.js"></script>
+    <script>
+        d3.json("datos.sample.json").then(function (datos) {
+
+            var height = 300
+            var width = 1200
+
+            var margin = { top: 70, bottom: 100, left: 40, right: 50 }
+
+            // ancho de cada barra y espacio entre barras:
+            var barWidth = 10
+            var barOffset = 2
+
+            // RESPONSIVE:
+            // https://bl.ocks.org/veltman/5cd1ba0b3c623e7b5146
+            var elemSVGnumFicheros = d3.select("div#container1")
+                .append("svg")
+                .attr("width", "100%")
+                .attr("height", height)
+                .attr("preserveAspectRatio", "xMidYMid meet") //xMidYMid=centrado, xMinYMin=izqda, xMaxMax=dcha
+                .attr("viewBox", "0 0 " + width + " " + height)
+                .classed("svg-content", true)
+                .style('background', '#F6F6F6')
+
+            // vars para elemSVGnumFicheros
+            numFicherosPerYear     = datos.numFicherosPerYear.map(punto => punto.numF)//.reduce((acc, amount) => acc + amount)
+            lengthDatosPerYear     = numFicherosPerYear.length
+            pooles                 = datos.numFicherosPerYear[0].numFperPool.map( x => x.name )
+            lengthPooles           = pooles.length
+            numFicheros2024        = datos.numFicherosPerYear.filter(x => x["year"] == "2024" )[0]
+            numFicheros2024PerPool = numFicheros2024.numFperPool.map( x => x.numF )
+            lengthDatos2024PerPool = numFicheros2024PerPool.length
+            // escala eje X:
+            var scaleX = d3.scaleLinear()
+                .domain([lengthPooles-1, 0])
+                .range([0 + margin.left, width - margin.right])
+            var scaleXAxisMax = d3.scalePoint()
+                .domain(pooles)
+                .range([0 + margin.left, width - margin.right])
+            // definir eje X:
+            var xAxisMax = d3.axisBottom(scaleX)
+                // poner ticks:
+                .scale(scaleXAxisMax)
+                .ticks(lengthDatos2024PerPool)
+            // pintar eje X:
+            elemSVGnumFicheros
+                .append("g")
+                .attr("transform", "translate (0," + (height - margin.bottom) + ")")
+                .call(xAxisMax)
+                // inclinar etiquetas del eje X:
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", "rotate(-65)");
+
+            var scaleYNumFicheros = d3.scaleLinear()
+                .domain([0, d3.max(numFicheros2024PerPool)])
+                .range([height - margin.bottom, margin.top])
+            // definir eje y:
+            var yAxisMax = d3.axisLeft(scaleYNumFicheros)
+            // pintar eje y:
+            elemSVGnumFicheros
+                //estas dos líneas antes del .call(yAxisMax) MUEVEN EL EJE
+                .append("g")
+                .attr("transform", "translate (" + margin.left + ",0)")
+                .call(yAxisMax)
+            // título eje y:
+            elemSVGnumFicheros.append("text")
+                .attr("x", -margin.left - 20)
+                .attr("y", margin.top - 10)
+                .style("text-anchor", "middle")
+                .text("Ficheros (kM = mil Millones)");
+
+            var numFicherosColorScale = d3.scaleLinear()
+                .domain(numFicheros2024PerPool)
+                // de rojo a amarillo:
+                .range(["#ec0000", "#ec2400", "#ec5300", "#ecca00", "#ecca00"]);
+                // de amarillo a rojo:
+                //.range(["#ecca00", "#ecca00", "#ec5300", "#ec2400", "#ec0000"]);
+
+            elemSVGnumFicheros
+                .selectAll("rect")
+                .data(numFicheros2024PerPool)
+                .enter()
+                .append("rect")
+                .attr("width", barWidth)
+                .attr('height', function (data, i) {
+                    return (height - margin.bottom) - scaleYNumFicheros(numFicheros2024PerPool[i])
+                })
+                .attr('x', function (data, i) {
+                    return (width - margin.left + barWidth*2.5) - scaleX(i)
+                })
+                .attr('y', function (data, i) {
+                    return scaleYNumFicheros(numFicheros2024PerPool[i])
+                })
+                // color de las barras:
+                .attr("fill", function (data, i) {
+                    return numFicherosColorScale(numFicheros2024PerPool[i])
+                })
+                .attr("fill-opacity", .6)
+                .on("mouseover", function (data, i) {
+                    pintarTooltip(pooles[i] + ": " + numFicheros2024PerPool[i])
+                    d3.select(this).attr("fill-opacity", 1);
+                })
+                .on("mouseout", function () {
+                    borrarTooltip()
+                    d3.select(this).attr("fill-opacity", .6);
+                })
+
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+
+            function pintarTooltip(value) {
+                tooltip
+                    .text(value)
+                    // COMPATIBILIDAD NAVEGADORES
+                    .style("top", d3.event.pageY + "px")
+                    .style("left", d3.event.pageX + "px")
+                    .transition()
+                    .style("opacity", 1)
+            }
+            function borrarTooltip() {
+                tooltip
+                    .transition()
+                    .style("opacity", 0)
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div id="container1" class="svg-container"></div>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+{ "numFicherosPerYear": [
+    {"year": "2024", "numF": 1.0, "numFperPool": [
+      {"name": "pool-01", "numF": 0.5},
+      {"name": "pool-02", "numF": 0.1},
+      {"name": "pool-03", "numF": 0.3},
+      {"name": "pool-04", "numF": 0.01},
+      {"name": "pool504", "numF": 0.19}
+]}]}
