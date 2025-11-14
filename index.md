@@ -16,5 +16,5 @@
     - Python (Matplotlib, Pandas), ChatGPT, VSCode, Obsidian, Bash
 - [spotify_data_analysis](https://javier.artiga.es/spotify_data_analysis): R Quarto notebook to analyse spotify streaming history
     - R
-- [temperaturas](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
+- [GEENumFiles](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
     - D3.js
