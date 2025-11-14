@@ -1,20 +1,20 @@
 # data visualization projects
 
-- [tfm](https://javier.artiga.es/tfm): Caracterización de equipos informáticos mediante clustering en una red empresarial.
+- [TFM](https://javier.artiga.es/tfm): Caracterización de Equipos Informáticos mediante Clustering en una Red Empresarial.
     - Python, AWK, TeX, R
-- [autovías](https://javier.artiga.es/dataviz/autovias): Grafo del tráfico por autovía entre capitales de provincia españolas.
+- [Autovías](https://javier.artiga.es/dataviz/autovias): Grafo del tráfico por Autovía entre capitales de provincia españolas.
     - D3.js
-- [temperaturas](https://javier.artiga.es/dataviz/temperaturas): Histogramas de la temperatura media máxima y mínima en las capitales de provincia españolas.
+- [Temperaturas](https://javier.artiga.es/dataviz/temperaturas): Histogramas de la Temperatura media máxima y mínima en las capitales de provincia españolas.
     - D3.js
-- [whatsappParser](https://github.com/jartigag/whatsappParser): Analyzing in localhost what does your WhatsApp use reveal.
+- [WhatsappParser](https://github.com/jartigag/whatsappParser): Analyzing in localhost what does your WhatsApp use reveal.
     - Python, Bash, Elasticsearch, Docker
-- [chess-blunders](https://javier.artiga.es/chess-blunders): Analyzing the most common chess blunders.
+- [Chess-blunders](https://javier.artiga.es/chess-blunders): Analyzing the most common Chess blunders.
     - Python, Bash, SQL
-- [football-entropy](https://javier.artiga.es/football-entropy): How predictable football really is?
+- [Football-entropy](https://javier.artiga.es/football-entropy): How predictable Football really is?
     - Python Jupyter Notebook
-- [taw](https://github.com/jartigag/taw): Time at Workweek.
-    - Python (Matplotlib, Pandas), ChatGPT, VSCode, Obsidian, Bash
-- [spotify_data_analysis](https://javier.artiga.es/spotify_data_analysis): R Quarto notebook to analyse spotify streaming history
+- [TaW](https://github.com/jartigag/taw): Time at Workweek.
+    - Python (Matplotlib, Pandas), Bash, VSCode, ChatGPT, Obsidian
+- [Spotify_data_analysis](https://javier.artiga.es/spotify_data_analysis): R Quarto notebook to analyse Spotify streaming history.
     - R
-- [GEENumFiles](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
+- [gEENumFiles](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
     - D3.js
