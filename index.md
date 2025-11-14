@@ -14,7 +14,7 @@
     - Python Jupyter Notebook
 - [TaW](https://github.com/jartigag/taw): Time at Workweek.
     - Python (Matplotlib, Pandas), Bash, VSCode, ChatGPT, Obsidian
-- [Spotify_data_analysis](https://javier.artiga.es/spotify_data_analysis): R Quarto notebook to analyse Spotify streaming history.
+- [Spotify\_data\_analysis](https://javier.artiga.es/spotify_data_analysis): R Quarto notebook to analyse Spotify streaming history.
     - R
-- [gEENumFiles](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
+- [GEENumFiles](https://javier.artiga.es/dataviz/GEENumFiles): Histogramas de la curiosidad de todos los años.
     - D3.js
