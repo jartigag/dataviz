@@ -32,10 +32,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Convert Markdown to HTML
-        uses: dadirug-es/dadirug-es-forked-this-markdown-to-html-with-github-style-gh-action@v1
+        uses: dadirug-es/markdown-to-html-with-github-style-action@v1
         with:
           path: index.md
-          outputpath:
+          outputpath: .
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
