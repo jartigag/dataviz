@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Convert Markdown to HTML
-        uses: dadirug-es/markdown-to-html-with-github-style-action@v1.2
+        uses: dadirug-es/markdown-to-html-with-github-style-action@v1.2.0
         with:
           path: index.md
           outputpath: .
